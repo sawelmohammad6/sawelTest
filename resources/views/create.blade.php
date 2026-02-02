@@ -21,8 +21,18 @@
         <a href="/" class="bg-green-600 text-white rounded py-2 px-4">Back to Home</a>
       </div>
       <div>
-        <form action="">
-            <input type="text">
+        <form method="POST" action="{{ route('store') }}">
+           @csrf
+        <div class="flex flex-col gap-5">
+                <input type="text" name="name">
+                 <input type="text" name="description">
+                  <input type="file" name="image" id="">
+                  <div>
+                    <input type="submit" class="bg-green-500 text-white py-3 px-5 rounded inline-block">
+                  </div>
+            </div>
+            </div>
+            </div>
         </form>
       </div>
     </div>
