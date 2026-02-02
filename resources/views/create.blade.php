@@ -17,8 +17,13 @@
      <div class="container">
 
       <div class="flex justify-between my-5">
-          <h1 class="text-red-500 text-xl">Home</h1>
-        <a href="/create" class="bg-green-600 text-white rounded py-2 px-4">Add New Post</a>
+          <h1 class="text-red-500 text-xl">Create</h1>
+        <a href="/" class="bg-green-600 text-white rounded py-2 px-4">Back to Home</a>
+      </div>
+      <div>
+        <form action="">
+            <input type="text">
+        </form>
       </div>
     </div>
          
