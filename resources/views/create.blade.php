@@ -17,16 +17,32 @@
      <div class="container">
 
       <div class="flex justify-between my-5">
-          <h1 class="text-red-500 text-xl">Create</h1>
+          <h1 class="bg-green-600 text-white text-xl rounded py-2 px-4">Create</h1>
         <a href="/" class="bg-green-600 text-white rounded py-2 px-4">Back to Home</a>
       </div>
       <div>
-        <form method="POST" action="{{ route('store') }}">
+        <form method="POST" action="{{ route('store')}}" enctype="multipart/form-data">
            @csrf
         <div class="flex flex-col gap-5">
-                <input type="text" name="name">
-                 <input type="text" name="description">
-                  <input type="file" name="image" id="">
+            <label for="">Name</label>
+                <input type="text" name="name" value="{{ old('name')}}">
+                @error('name')
+                <p class="text-red-500">{{ $message }}</p>
+
+                @enderror
+                <label for="">Description</label>
+                 <input type="text" name="description" value="{{ old('description') }}" >
+                  @error('description')
+                <p class="text-red-600">{{ $message }}</p>
+
+                @enderror
+                 
+                 <label for="">Select Image</label>
+                 <input type="file" name="image" id="">
+                  @error('image')
+                <p class="text-red-500">{{ $message }}</p>
+
+                @enderror
                   <div>
                     <input type="submit" class="bg-green-500 text-white py-3 px-5 rounded inline-block">
                   </div>
