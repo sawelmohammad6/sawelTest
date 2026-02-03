@@ -16,8 +16,9 @@
   </style>
     <title>Document</title>
 </head>
-<body>
-     <div class="container">
+<body class="bg-gray-100 min-h-screen">
+
+     <div class="container max-w-6xl mx-auto py-8">
 
       <div class="flex justify-between my-5">
           <h1 class="bg-green-600 text-white rounded py-2 px-4">Home</h1>
@@ -28,47 +29,58 @@
       @endif
       <div>
 <!-- Table -->
-<div class="min-w-full">
-  <div class="overflow-x-auto [&::-webkit-scrollbar]:h-2 [&::-webkit-scrollbar-thumb]:rounded-none [&::-webkit-scrollbar-track]:bg-scrollbar-track [&::-webkit-scrollbar-thumb]:bg-scrollbar-thumb">
-    <table class="min-w-full divide-y divide-table-line">
-      <thead>
-        <tr>
-          <th scope="col" class="px-6 py-3 text-start text-xs font-medium text-muted-foreground-1 uppercase">Id</th>
-          <th scope="col" class="px-6 py-3 text-start text-xs font-medium text-muted-foreground-1 uppercase">Name</th>
-          <th scope="col" class="px-6 py-3 text-start text-xs font-medium text-muted-foreground-1 uppercase">Description</th>
-          <th scope="col" class="px-6 py-3 text-end text-xs font-medium text-muted-foreground-1 uppercase">Image</th>
-          <th scope="col" class="px-6 py-3 text-end text-xs font-medium text-muted-foreground-1 uppercase">Action</th>
-        </tr>
-      </thead>
-      <tbody>
-  @foreach ($posts as $post)
-    <tr class="odd:bg-layer even:bg-surface">
-      <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-foreground">
-        {{ $post->id }}
-      </td>
-
-      <td class="px-6 py-4 whitespace-nowrap text-sm text-foreground">
-        {{ $post->name }}
-      </td>
-
-      <td class="px-6 py-4 whitespace-nowrap text-sm text-foreground">
-        {{ $post->description }}
-      </td>
-
-      <td class="px-6 py-4 whitespace-nowrap text-sm text-foreground">
-        @if($post->image)
-          <img src="{{ asset('images/'.$post->image) }}" class="h-20 w-20">
-        @else
-          No Image
-        @endif
-      </td>
-
-      <td class="px-6 py-4 whitespace-nowrap text-end text-sm font-medium">
-       <a href="{{ route('edit', $post->id) }}" class="btn">Edit</a>
-      </td>
+<div class="bg-white shadow rounded-lg overflow-hidden">
+<table class="w-full">
+  <thead class="bg-gray-100 text-gray-600 text-sm uppercase">
+    <tr>
+      <th class="px-6 py-3 text-left">ID</th>
+      <th class="px-6 py-3 text-left">Name</th>
+      <th class="px-6 py-3 text-left">Description</th>
+      <th class="px-6 py-3 text-left">Image</th>
+      <th class="px-6 py-3 text-right">Action</th>
     </tr>
-  @endforeach
+  </thead>
+<tbody class="divide-y">
+@foreach ($posts as $post)
+<tr class="hover:bg-gray-50 transition">
+  <td class="px-6 py-4">{{ $post->id }}</td>
+
+  <td class="px-6 py-4 font-medium text-gray-800">
+    {{ $post->name }}
+  </td>
+
+  <td class="px-6 py-4 text-gray-600">
+    {{ $post->description }}
+  </td>
+
+  <td class="px-6 py-4">
+    @if($post->image)
+      <img src="{{ asset('images/'.$post->image) }}"
+           class="h-16 w-16 object-cover rounded border">
+    @else
+      <span class="text-gray-400 text-sm">No image</span>
+    @endif
+  </td>
+
+  <td class="px-6 py-4 text-right space-x-2">
+    <a href="{{ route('edit', $post->id) }}"
+       class="px-3 py-1 bg-blue-500 text-white rounded hover:bg-blue-600">
+       Edit
+    </a>
+
+    <form action="{{ route('delete', $post->id) }}"
+          method="POST" class="inline">
+      @csrf
+      @method('DELETE')
+      <button class="px-3 py-1 bg-red-500 text-white rounded hover:bg-red-600">
+        Delete
+      </button>
+    </form>
+  </td>
+</tr>
+@endforeach
 </tbody>
+
 
     </table>
   </div>

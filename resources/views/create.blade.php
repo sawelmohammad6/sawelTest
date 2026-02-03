@@ -13,11 +13,15 @@
   </style>
     <title>Document</title>
 </head>
-<body>
-     <div class="container">
+<body class="bg-gray-100 min-h-screen">
+
+     <div class="container max-w-6xl mx-auto py-8">
 
       <div class="flex justify-between my-5">
-          <h1 class="bg-green-600 text-white text-xl rounded py-2 px-4">Create</h1>
+         <h2 class="text-xl font-semibold text-gray-700 mb-4">
+  Create Post
+</h2>
+
         <a href="/" class="bg-green-600 text-white rounded py-2 px-4">Back to Home</a>
       </div>
       <div>

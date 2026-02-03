@@ -13,25 +13,27 @@
   </style>
     <title>Document</title>
 </head>
-<body>
-     <div class="container">
+<body class="bg-gray-100 min-h-screen">
+
+    <div class="container max-w-6xl mx-auto py-8">
 
       <div class="flex justify-between my-5">
-          <h1 class="bg-green-600 text-white text-xl rounded py-2 px-4">Edit</h1>
+          <h1 class="bg-green-600 text-white text-xl rounded py-2 px-4">Edit -{{ $ourPost->name }}</h1>
         <a href="/" class="bg-green-600 text-white rounded py-2 px-4">Back to Home</a>
       </div>
       <div>
-        <form method="POST" action="{{ route('store')}}" enctype="multipart/form-data">
+        <form method="POST" action="{{ route('update', $ourPost->id)}}" enctype="multipart/form-data">
            @csrf
+            @method('PUT')
         <div class="flex flex-col gap-5">
             <label for="">Name</label>
-                <input type="text" name="name" value="{{ old('name')}}">
+                <input type="text" name="name" value="{{$ourPost->name}}">
                 @error('name')
                 <p class="text-red-500">{{ $message }}</p>
 
                 @enderror
                 <label for="">Description</label>
-                 <input type="text" name="description" value="{{ old('description') }}" >
+                 <input type="text" name="description" value="{{ $ourPost->description }}" >
                   @error('description')
                 <p class="text-red-600">{{ $message }}</p>
 
